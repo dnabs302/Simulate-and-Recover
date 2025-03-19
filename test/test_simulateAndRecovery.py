@@ -18,8 +18,8 @@ class TestSimulateAndRecovery(unittest.TestCase):
         self.sar.params['boundary_s'], self.sar.params['drift'], self.sar.params['nond'] = 1.6, 1.1, 0.2
         self.sar.predicted_parameters()
         self.assertTrue(0 <= self.sar.params['r_pred'] <= 1)
-        self.assertTrue(self.sar.params['m_pred']> self.sar.params['nond'])
-        self.assertTrue(self.sar.params['v_pred'] > 0)
+        self.assertTrue(self.sar.params['m_pred'] > self.sar.params['nond']) #to ensure values are mathematically reasonable
+        self.assertTrue(0 < self.sar.params['v_pred']) #to ensure the correct decisions are being made
 
     def test_inverse_equations(self):
         self.sar.params['boundary_s'], self.sar.params['drift'], self.sar.params['nond'] = 1.6, 1.1, 0.2
